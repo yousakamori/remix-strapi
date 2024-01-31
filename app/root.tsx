@@ -1,4 +1,4 @@
-import type { LinksFunction } from "@remix-run/node";
+import { type LinksFunction, json } from "@remix-run/node";
 import { getContacts } from "./data";
 import {
   Form,
@@ -9,7 +9,6 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
-  json,
   useLoaderData,
 } from "@remix-run/react";
 
