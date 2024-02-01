@@ -1,5 +1,5 @@
 import { type LinksFunction, json } from "@remix-run/node";
-import { getContacts } from "./data";
+import { getContacts } from "./data.server";
 import {
   Form,
   Link,
