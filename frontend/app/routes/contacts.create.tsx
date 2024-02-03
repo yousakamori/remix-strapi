@@ -10,7 +10,7 @@ export async function action({ request }: ActionFunctionArgs) {
     avatar: z.string().url().min(2),
     first: z.string().min(2),
     last: z.string().min(2),
-    twitter: z.string().url(),
+    twitter: z.string(),
   });
 
   const validateFields = formSchema.safeParse({
