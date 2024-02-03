@@ -48,9 +48,9 @@ export default function App() {
               />
               <div id="search-spinner" aria-hidden hidden={true} />
             </Form>
-            <Form method="post">
-              <button type="submit">New</button>
-            </Form>
+            <Link to="/contacts/create" className="buttonLink">
+              Create
+            </Link>
           </div>
           <nav>
             {contacts.length ? (

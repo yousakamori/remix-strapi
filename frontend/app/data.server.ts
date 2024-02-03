@@ -65,15 +65,42 @@ export async function getContacts(query?: string | null) {
     const response = await fetch(`${url}/api/contacts`);
     const data = await response.json();
     const flattenAttributesData = flattenAttributes(data.data);
+
     return flattenAttributesData;
   } catch (err) {
     console.log(err);
   }
 }
 
-export async function createEmptyContact() {}
+export async function createContact(data: any) {
+  try {
+    const response = await fetch(`${url}/api/contacts`, {
+      method: "Post",
+      headers: {
+        "Content-Type": "Application/json",
+      },
+      body: JSON.stringify({ data: { ...data } }),
+    });
+    const responseData = await response.json();
+    const flattenAttributesData = flattenAttributes(responseData.data);
 
-export async function getContact(id: string) {}
+    return flattenAttributesData;
+  } catch (err) {
+    console.log(err);
+  }
+}
+
+export async function getContact(id: string) {
+  try {
+    const response = await fetch(`${url}/api/contacts/${id}`);
+    const data = await response.json();
+    const flattenAttributesData = flattenAttributes(data.data);
+
+    return flattenAttributesData;
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 export async function updateContact(id: string, updates: ContactMutation) {}
 
