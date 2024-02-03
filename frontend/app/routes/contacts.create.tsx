@@ -1,4 +1,4 @@
-import { type ActionFunctionArgs, json } from "@remix-run/node";
+import { type ActionFunctionArgs, json, redirect } from "@remix-run/node";
 import { Form, useActionData, useNavigate } from "@remix-run/react";
 import { createContact } from "../data.server";
 import z from "zod";
@@ -29,7 +29,7 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   const newEntry = await createContact(data);
-  return newEntry;
+  return redirect(`/contacts/${newEntry.id}`);
 }
 
 export default function CreateContact() {
