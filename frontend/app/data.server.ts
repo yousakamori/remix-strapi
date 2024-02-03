@@ -75,7 +75,7 @@ export async function getContacts(query?: string | null) {
 export async function createContact(data: any) {
   try {
     const response = await fetch(`${url}/api/contacts`, {
-      method: "Post",
+      method: "POST",
       headers: {
         "Content-Type": "Application/json",
       },
@@ -102,7 +102,23 @@ export async function getContact(id: string) {
   }
 }
 
-export async function updateContact(id: string, updates: ContactMutation) {}
+export async function updateContactById(id: string, updates: ContactMutation) {
+  try {
+    const response = await fetch(`${url}/api/contacts/${id}`, {
+      method: "PUT",
+      headers: {
+        "Content-Type": "Application/json",
+      },
+      body: JSON.stringify({ data: { ...updates } }),
+    });
+    const responseData = await response.json();
+    const flattenAttributesData = flattenAttributes(responseData.data);
+
+    return flattenAttributesData;
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 export async function deleteContact(id: string) {}
 

@@ -29,7 +29,7 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   const newEntry = await createContact(data);
-  redirect(`/contacts/${newEntry.id}`);
+  return redirect(`/contacts/${newEntry.id}`);
 }
 
 export default function CreateContact() {
