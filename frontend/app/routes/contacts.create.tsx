@@ -29,7 +29,7 @@ export async function action({ request }: ActionFunctionArgs) {
   }
 
   const newEntry = await createContact(data);
-  return redirect(`/contacts/${newEntry.id}`);
+  redirect(`/contacts/${newEntry.id}`);
 }
 
 export default function CreateContact() {
@@ -75,7 +75,7 @@ export default function CreateContact() {
       <div>
         <label>
           <span>Notes</span>
-          <textarea name="note" rows={6} />
+          <textarea name="notes" rows={6} />
         </label>
       </div>
 
