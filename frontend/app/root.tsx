@@ -9,7 +9,9 @@ import {
   Outlet,
   Scripts,
   ScrollRestoration,
+  isRouteErrorResponse,
   useLoaderData,
+  useRouteError,
 } from "@remix-run/react";
 
 import appStylesHref from "./app.css";
@@ -23,11 +25,36 @@ export async function loader() {
   return json(contacts);
 }
 
+export function ErrorBoundary() {
+  const error = useRouteError();
+  console.error(error);
+  return (
+    <html lang="ja">
+      <head>
+        <title>Oops!</title>
+        <Meta />
+        <Links />
+      </head>
+      <body className="root-error">
+        <h1>Oops, It's game over.</h1>
+        <p>
+          {isRouteErrorResponse(error)
+            ? `${error.status} ${error.statusText || error.data}`
+            : error instanceof Error
+            ? error.message
+            : "Unknown Error"}
+        </p>
+        <Scripts />
+      </body>
+    </html>
+  );
+}
+
 export default function App() {
   const contacts = useLoaderData<typeof loader>();
 
   return (
-    <html lang="en">
+    <html lang="ja">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />

@@ -23,7 +23,7 @@ export const action = async ({ request, params }: ActionFunctionArgs) => {
   const formData = await request.formData();
   const data = Object.fromEntries(formData);
   console.log(data);
-  const updateResponse = updateContactById(params.contactId, data);
+  const updateResponse = await updateContactById(params.contactId, data);
   if (updateResponse.error) {
     return json({
       data: null,

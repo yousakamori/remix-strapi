@@ -120,7 +120,19 @@ export async function updateContactById(id: string, updates: ContactMutation) {
   }
 }
 
-export async function deleteContact(id: string) {}
+export async function deleteContact(id: string) {
+  try {
+    const response = await fetch(`${url}/api/contacts/${id}`, {
+      method: "DELETE",
+    });
+    const data = await response.json();
+    const flattenAttributesData = flattenAttributes(data.data);
+
+    return flattenAttributesData;
+  } catch (err) {
+    console.log(err);
+  }
+}
 
 const data = [
   {
