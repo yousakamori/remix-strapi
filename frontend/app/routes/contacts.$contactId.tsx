@@ -6,9 +6,13 @@ import {
   useRouteError,
 } from "@remix-run/react";
 import type { FunctionComponent } from "react";
-import { json, type LoaderFunctionArgs } from "@remix-run/node";
+import {
+  ActionFunctionArgs,
+  json,
+  type LoaderFunctionArgs,
+} from "@remix-run/node";
 
-import { getContact } from "../data.server";
+import { getContact, updateContactById } from "../data.server";
 import invariant from "tiny-invariant";
 
 export async function loader({ params }: LoaderFunctionArgs) {
@@ -20,6 +24,15 @@ export async function loader({ params }: LoaderFunctionArgs) {
     throw new Response("Not Found", { status: 404 });
   }
   return json(contact);
+}
+
+export async function action({ params, request }: ActionFunctionArgs) {
+  invariant(params.contactId, "missing contactId params");
+
+  const formData = await request.formData();
+  return updateContactById(params.contactId, {
+    favorite: formData.get("favorite") === "true",
+  });
 }
 
 export function ErrorBoundary() {
