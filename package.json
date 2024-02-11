@@ -1,0 +1,18 @@
+{
+  "name": "remix-strapi",
+  "version": "1.0.0",
+  "description": "remix-strapi",
+  "scripts": {
+    "frontend": "pnpm dev --prefix ../frontend/",
+    "backend": "pnpm dev --prefix ../backend/",
+    "setup:frontend": "cd frontend && pnpm",
+    "setup:backend": "cd backend && pnpm",
+    "setup": "pnpm install && pnpm setup:frontend && pnpm setup:backend",
+    "dev": "pnpm concurrently \"cd backend && pnpm dev\" \"cd frontend && pnpm dev\""
+  },
+  "dependencies": {
+    "concurrently": "^8.2.2"
+  },
+  "author": "Paul",
+  "license": "MIT"
+}
